@@ -4,7 +4,10 @@ const Categoria = ({categoria}) => {
   const {handleClickCategoria, categoriaActual} = useQuiosco();
   const {nombre, icono, id} = categoria;
   return (
-    <div className={`${categoriaActual?.id == id ? 'bg-amber-400' : ''}  flex items-center gap-4 border hover:bg-amber-400 p-2`}>
+    <div 
+        className={`${categoriaActual?.id == id ? 'bg-amber-400' : ''}  flex items-center gap-4 border hover:bg-amber-400 p-2 cursor-pointer`}
+        onClick={ () => handleClickCategoria(id)}
+    >
         <Image 
             src={`/assets/img/icono_${icono}.svg`} 
             width={70} 
@@ -13,8 +16,8 @@ const Categoria = ({categoria}) => {
         />
 
         <button 
-            className=" text-2xl font-bold cursor-pointer"
-            onClick={ () => handleClickCategoria(id)}
+            className=" text-2xl font-bold"
+            // onClick={ () => handleClickCategoria(id)}
         >
             {nombre}
         </button>
