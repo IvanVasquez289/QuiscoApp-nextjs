@@ -1,8 +1,10 @@
 import Image from "next/future/image";
+import useQuiosco from "../hooks/useQuiosco";
 const Categoria = ({categoria}) => {
+  const {handleClickCategoria, categoriaActual} = useQuiosco();
   const {nombre, icono, id} = categoria;
   return (
-    <div className=" flex items-center gap-4 border hover:bg-amber-400 p-2">
+    <div className={`${categoriaActual?.id == id ? 'bg-amber-400' : ''}  flex items-center gap-4 border hover:bg-amber-400 p-2`}>
         <Image 
             src={`/assets/img/icono_${icono}.svg`} 
             width={70} 
@@ -10,7 +12,10 @@ const Categoria = ({categoria}) => {
             alt={`logo ${nombre}`}
         />
 
-        <button className=" text-2xl font-bold cursor-pointer">
+        <button 
+            className=" text-2xl font-bold cursor-pointer"
+            onClick={ () => handleClickCategoria(id)}
+        >
             {nombre}
         </button>
     </div>
