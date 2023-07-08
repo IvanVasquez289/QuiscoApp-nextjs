@@ -2,6 +2,7 @@ import Head from "next/head"
 import Sidebar from "../components/Sidebar"
 import Modal from 'react-modal'
 import useQuiosco from "../hooks/useQuiosco";
+import ModalProducto from "../components/ModalProducto";
 const customStyles = {
   content: {
     top: '50%',
@@ -42,7 +43,7 @@ export default function Layout({children, pagina}) {
             style={customStyles}
             isOpen={modal}
           >
-            <h3>Desde modal...</h3>
+            <ModalProducto/>
           </Modal>
         )}
     
