@@ -7,7 +7,7 @@ const Sidebar = () => {
     <>
         <Image src={"/assets/img/logo.svg"} width={200} height={100} alt="imagen logo"/>
 
-        <nav className=" mt-10">
+        <nav className=" mt-10 shadow-md">
           {categorias.map(categoria => (
             <Categoria
               key={categoria.id}
