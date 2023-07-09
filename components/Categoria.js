@@ -17,7 +17,6 @@ const Categoria = ({categoria}) => {
 
         <button 
             className=" text-2xl font-bold"
-            // onClick={ () => handleClickCategoria(id)}
         >
             {nombre}
         </button>

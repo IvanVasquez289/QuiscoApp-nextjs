@@ -3,13 +3,18 @@ import Image from "next/future/image";
 import formatearDinero from "../helpers";
 import { useState } from "react";
 const ModalProducto = () => {
-  const [cantidad,setCantidad] = useState(1)
-  const { producto, handleChangeModal } = useQuiosco();
+  const [cantidad, setCantidad] = useState(1);
+  const { producto, handleChangeModal, handleSetPedido } = useQuiosco();
   const { imagen, nombre, precio } = producto;
   return (
     <div className=" flex gap-10">
       <div className=" md:w-1/3">
-        <Image width={400} height={100} src={`/assets/img/${imagen}.jpg`} />
+        <Image
+          width={300}
+          height={400}
+          src={`/assets/img/${imagen}.jpg`}
+          alt={`imagen producto ${nombre}`}
+        />
       </div>
       <div className=" md:w-2/3">
         <div className="flex justify-end">
@@ -35,34 +40,11 @@ const ModalProducto = () => {
           {formatearDinero(precio)}
         </p>
         <div className="flex gap-3 mt-3">
-          <button 
+          <button
             type="button"
-            onClick={()=>{
-                if(cantidad<=1) return
-                setCantidad(cantidad - 1)
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-8 h-8"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-          </button>
-          <p>{cantidad}</p>
-          <button 
-            type="button"
-            onClick={()=>{
-                if(cantidad>=5) return
-                setCantidad(cantidad + 1)
+            onClick={() => {
+              if (cantidad <= 1) return;
+              setCantidad(cantidad - 1);
             }}
           >
             <svg
@@ -80,6 +62,39 @@ const ModalProducto = () => {
               />
             </svg>
           </button>
+          <p>{cantidad}</p>
+          <button
+            type="button"
+            onClick={() => {
+              if (cantidad >= 5) return;
+              setCantidad(cantidad + 1);
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-8 h-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div>
+            <button 
+                type="button"
+                className=" bg-indigo-600 mt-5 p-3 uppercase text-white font-bold rounded-md"
+                onClick={()=> handleSetPedido({...producto,cantidad})}
+            >
+                Añadir al pedido
+            </button>
         </div>
       </div>
     </div>
