@@ -38,7 +38,15 @@ const QuioscoProvider = ({children}) => {
         setModal(!modal)
     }
     const handleSetPedido = ({imagen,categoriaId, ...producto}) => {
-        setPedido([...pedido, producto])
+        const existePedido = pedido.some(productoState => productoState.id == producto.id)
+        if(existePedido){
+            console.log('Producto ya existente')
+            const pedidoActualizado = pedido.map(productoState => productoState.id == producto.id ? producto : productoState)
+            setPedido(pedidoActualizado)
+        }else{
+            console.log('nuevo producto')
+            setPedido([...pedido, producto])
+        }
     }
 
     return(
