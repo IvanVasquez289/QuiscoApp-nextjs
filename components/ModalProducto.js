@@ -18,7 +18,7 @@ const ModalProducto = () => {
   
 
   return (
-    <div className=" flex gap-10">
+    <div className=" md:flex gap-10">
       <div className=" md:w-1/3">
         <Image
           width={300}
@@ -28,7 +28,7 @@ const ModalProducto = () => {
         />
       </div>
       <div className=" md:w-2/3">
-        <div className="flex justify-end">
+        <div className="mt-3 md:mt-0 flex justify-end">
           <button type="button" onClick={() => handleChangeModal()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
