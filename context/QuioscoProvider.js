@@ -43,7 +43,7 @@ const QuioscoProvider = ({children}) => {
             console.log('Producto ya existente')
             const pedidoActualizado = pedido.map(productoState => productoState.id == producto.id ? producto : productoState)
             setPedido(pedidoActualizado)
-            toast('Editado correctamente',{
+            toast('🥳 Editado correctamente',{
                 className: 'foo-bar'
             })
         }else{
@@ -53,6 +53,11 @@ const QuioscoProvider = ({children}) => {
         }
     }
 
+    const handleEditarCantidad = (id) => {
+        const productoActualizado = pedido.find(producto => producto.id === id)
+        setProducto(productoActualizado)
+        setModal(!modal)
+    }
     return(
         <QuioscoContext.Provider
             value={{
@@ -64,7 +69,8 @@ const QuioscoProvider = ({children}) => {
                 modal,
                 handleChangeModal,
                 handleSetPedido,
-                pedido
+                pedido,
+                handleEditarCantidad
             }}
         >
             {children}

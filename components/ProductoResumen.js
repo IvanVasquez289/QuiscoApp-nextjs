@@ -1,8 +1,9 @@
 import Image from "next/future/image";
 import formatearDinero from "../helpers";
+import useQuiosco from "../hooks/useQuiosco";
 const ProductoResumen = ({producto}) => {
+  const {handleEditarCantidad} = useQuiosco()
   const {nombre,imagen,precio,cantidad} = producto;
-  console.log(producto)
   return (
     <div className='flex gap-10 items-center content-center mb-3 shadow p-3'>
       <div className=" w-1/6">
@@ -24,6 +25,7 @@ const ProductoResumen = ({producto}) => {
         <button
           type="button"
           className="bg-cyan-700 text-white px-5 py-2 shadow-md rounded-md text-center uppercase font-bold w-full flex gap-3"
+          onClick={()=> handleEditarCantidad(producto.id)}
         > 
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
