@@ -1,11 +1,22 @@
 import Layout from "../layout/Layout";
+import useQuiosco from "../hooks/useQuiosco";
 export default function Total() {
+  const {pedido} = useQuiosco()
+  
+  const existenPedidos = () => {
+    return pedido.length === 0
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log('enviando form...')
+  }
   return (
     <Layout pagina={"Total y confirmar pedido"}>
       <h1 className=" text-4xl font-black">Total y confirmar pedido</h1>
       <p className="text-2xl my-10">Confirma tu pedido a continuacion</p>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label
             className="block font-bold mb-3 text-xl text-slate-800"
@@ -29,7 +40,11 @@ export default function Total() {
           <input
             type="submit"
             value="Confirmar pedido"
-            className="bg-indigo-600 p-2 w-full xl:w-1/3 rounded text-white uppercase font-bold cursor-pointer"
+            className={`
+            ${existenPedidos() ? 'bg-indigo-100' : 'bg-indigo-600  hover:bg-indigo-400 cursor-pointer'}
+            p-2 w-full xl:w-1/3 rounded text-white uppercase font-bold 
+            `}
+            disabled={existenPedidos()}
           />
         </div>
       </form>
