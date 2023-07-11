@@ -1,16 +1,13 @@
 import Layout from "../layout/Layout";
 import useQuiosco from "../hooks/useQuiosco";
+import formatearDinero from "../helpers";
 export default function Total() {
-  const {pedido,nombre,setNombre} = useQuiosco()
+  const {pedido,nombre,setNombre,handleSubmit,total} = useQuiosco()
   
   const existenPedidos = () => {
     return pedido.length === 0 || nombre === '' || nombre.length <3
   }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    console.log('enviando form...')
-  }
   return (
     <Layout pagina={"Total y confirmar pedido"}>
       <h1 className=" text-4xl font-black">Total y confirmar pedido</h1>
@@ -34,7 +31,7 @@ export default function Total() {
         </div>
         <div className="mt-10">
           <p className="text-2xl">
-            Total a pagar <span className="font-bold">$200</span>{" "}
+            Total a pagar <span className="font-bold">{formatearDinero(total)}</span>{" "}
           </p>
         </div>
 
