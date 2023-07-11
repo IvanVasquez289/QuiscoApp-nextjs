@@ -37,7 +37,7 @@ const QuioscoProvider = ({children}) => {
     const handleChangeModal = () => {
         setModal(!modal)
     }
-    const handleSetPedido = ({imagen,categoriaId, ...producto}) => {
+    const handleSetPedido = ({categoriaId, ...producto}) => {
         const existePedido = pedido.some(productoState => productoState.id == producto.id)
         if(existePedido){
             console.log('Producto ya existente')
