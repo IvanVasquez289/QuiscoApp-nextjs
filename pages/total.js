@@ -1,10 +1,10 @@
 import Layout from "../layout/Layout";
 import useQuiosco from "../hooks/useQuiosco";
 export default function Total() {
-  const {pedido} = useQuiosco()
+  const {pedido,nombre,setNombre} = useQuiosco()
   
   const existenPedidos = () => {
-    return pedido.length === 0
+    return pedido.length === 0 || nombre === '' || nombre.length <3
   }
 
   const handleSubmit = e => {
@@ -28,6 +28,8 @@ export default function Total() {
             id="nombre"
             type="text"
             className="bg-gray-200 w-full lg:w-1/3 rounded p-2"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value) }
           />
         </div>
         <div className="mt-10">
