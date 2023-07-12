@@ -76,12 +76,14 @@ const QuioscoProvider = ({children}) => {
         setPedido(pedidoActualizado)
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('enviando form...')
-        console.log(pedido)
-        console.log(nombre)
-        console.log(total)
+        try {
+            const {data} = await axios.post('/api/ordenes',{pedido,nombre,total,fecha:Date.now().toString()})
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
     }
     return(
         <QuioscoContext.Provider
