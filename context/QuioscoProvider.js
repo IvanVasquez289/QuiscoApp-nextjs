@@ -55,9 +55,7 @@ const QuioscoProvider = ({children}) => {
             console.log('Producto ya existente')
             const pedidoActualizado = pedido.map(productoState => productoState.id == producto.id ? producto : productoState)
             setPedido(pedidoActualizado)
-            toast('🥳 Editado correctamente',{
-                className: 'foo-bar'
-            })
+            toast.info('Editado correctamente')
         }else{
             console.log('nuevo producto')
             setPedido([...pedido, producto])
@@ -79,8 +77,19 @@ const QuioscoProvider = ({children}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const {data} = await axios.post('/api/ordenes',{pedido,nombre,total,fecha:Date.now().toString()})
-            console.log(data)
+            await axios.post('/api/ordenes',{pedido,nombre,total,fecha:Date.now().toString()})
+            // Resetear App
+            toast(`${nombre} tu pedido ha sido enviado 🥳`,{
+                className: 'foo-bar'
+            })
+            setCategoriaActual(categorias[0])
+            setPedido([])
+            setNombre('')
+            setTotal(0)
+
+            setTimeout(() => {
+                router.push('/')
+            }, 3000);
         } catch (error) {
             console.log(error)
         }
