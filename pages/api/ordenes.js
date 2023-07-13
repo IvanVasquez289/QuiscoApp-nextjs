@@ -12,5 +12,12 @@ export default async function handler(req, res) {
             }
         })
         res.status(200).json(orden)
+    }else{
+        const ordenes = await prisma.orden.findMany({
+            where:{
+                estado: false
+            }
+        })
+        res.status(200).json(ordenes)
     }
 }
