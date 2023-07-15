@@ -5,7 +5,7 @@ import OrdenCompletada from '../components/OrdenCompletada'
 import { useEffect, useState } from "react";
 import useQuiosco from "../hooks/useQuiosco";
 import formatearDinero from "../helpers";
-const ordenesCompletadas = () => {
+const OrdenesCompletadas = () => {
   const [ganancias,setGanancias] = useState(0)
   const {ordenesCompletadas,obtenerOrdenesCompletadas} = useQuiosco()
   const fetcher = () => axios('/api/ordenesCompletadas').then(datos => datos.data)
@@ -40,4 +40,4 @@ const ordenesCompletadas = () => {
   )
 }
 
-export default ordenesCompletadas
+export default OrdenesCompletadas
