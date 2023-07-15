@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 export default function AdminLayout({children, pagina}) {
     const router = useRouter()
-    console.log(router.pathname)
+    // console.log(router.pathname)
     return (
       <>
         <Head>

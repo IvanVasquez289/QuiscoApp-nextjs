@@ -13,6 +13,7 @@ const QuioscoProvider = ({children}) => {
     const [pedido, setPedido] = useState([])
     const [nombre, setNombre] = useState('')
     const [total, setTotal] = useState(0)
+    const [ordenesCompletadas, setOrdenesCompletadas] = useState([])
 
     const router = useRouter()
 
@@ -21,9 +22,15 @@ const QuioscoProvider = ({children}) => {
         setCategorias(data)
 
     }
+    const obtenerOrdenesCompletadas = async () => {
+        const {data} = await axios('/api/ordenesCompletadas')
+        setOrdenesCompletadas(data)
+
+    }
     
     useEffect(() => {
       obtenerCategorias()
+      obtenerOrdenesCompletadas()
     }, [])
 
     useEffect(() => {
@@ -111,7 +118,9 @@ const QuioscoProvider = ({children}) => {
                 nombre,
                 setNombre,
                 handleSubmit,
-                total
+                total,
+                ordenesCompletadas,
+                obtenerOrdenesCompletadas
             }}
         >
             {children}
