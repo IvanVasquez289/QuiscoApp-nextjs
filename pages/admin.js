@@ -4,10 +4,10 @@ import AdminLayout from "../layout/AdminLayout";
 import Orden from '../components/Orden';
 export default function Admin(){
     const fetcher = () => axios('/api/ordenes').then(datos => datos.data)
-    const { data, error, isLoading } = useSWR('/api/ordenes', fetcher)
-    console.log(data)
-    console.log(error)
-    console.log(isLoading)
+    const { data, error, isLoading } = useSWR('/api/ordenes', fetcher,{refreshInterval:50})
+    // console.log(data)
+    // console.log(error)
+    // console.log(isLoading)
     return(
         <AdminLayout
             pagina={'Admin'}
@@ -20,7 +20,7 @@ export default function Admin(){
                     key={orden.id}
                     orden={orden}
                 />
-            ) ) : 'No hay'}
+            ) ) : 'No hay ordenes aún'}
         </AdminLayout>
     )
 }
